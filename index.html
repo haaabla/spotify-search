@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spotify Search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="wrapper">
+        <img class="logo" src="logo.png" alt="">
+        <img class="logotype" src="logotype.png" alt="">
+        <div class="search-container">
+            <div class="search-field">
+                <input type="search" value="Search" onfocus="value=''" class="input-search"></input>
+                <select>
+                    <option value="artist">Artist</option>
+                    <option value="album">Album</option>
+                </select>
+                <button class="button">></button>
+            </div>
+            <div class="search-results">
+                <div id="showresults">
+                    <!-- RESULTS TEMPLATE WILL COME IN HERE -->
+                </div>
+                <div class="loadmore">Load more</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TO DO -
+    1) No results page
+    2) If "input" field value is empty green "Search" pops back up
+    3) > button is gray but becomes green when you start typing
+    4) Styling of "loadmore" button / nice fade away
+    5) Style the cards on hover
+    6) You can search Search..
+    7) Infinite scroll
+    8) When loads more should fill from same row
+    9) Animations when menu items collapse to become top nav
+    10) Anmation of Search Results show up sleek way
+    11) Better UI/UX for Artist/Album choosing
+    -->
+
+    <!-- SEARCH TEMPLATE -->
+    <template id="results">
+        <div class="word-searched"></div>
+        <br>
+        <br>
+        <div class="results-container">
+            {{#items}}
+            {{#external_urls}}
+            <a href="{{spotify}}" target="_blank">
+            {{/external_urls}}
+                <div class="each-result">
+                    {{#images}}
+                        {{#unless @index}} <!-- if not index -->
+                            <img class="thumbnail" src="{{url}}">
+                        {{/unless}}
+                    {{/images}}
+                    {{^images}} <!-- if empty handlebar uses this: -->
+                        <img class="thumbnail" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif">
+                    {{/images}}
+                    <div class="name"><h3>{{name}}</h3></div>
+                </div>
+            </a>
+            {{/items}}
+        </div>
+    </template>
+
+
+
+<!--
+infinte scroll = location.search.indexOf('scroll=infinite')
+
+setTimeout to check scrolling (after works: beaware of constantly reloading same content - restart setTimeout only once it has been loaded)
+
+$(window).scrollTop(); to check scroll position
+
+Check if bottom of the page:
+$(window).height + $(window).scrollTop() = full page length and that you are at the bottom of the page -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="script.js" charset="utf-8"></script>
+</body>
+</html>
