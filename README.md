@@ -14,4 +14,6 @@ Create a portal using Spotify's API to be able to search through artists and alb
 
 Minimal white Spotify Search functionality
 
+http://spotify-search.surge.sh/
+
 <img src="https://github.com/islanderupnorth/spotify-search/blob/master/spotify.png" style="width: 100%" />
